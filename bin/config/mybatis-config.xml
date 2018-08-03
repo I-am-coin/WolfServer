@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration> <!-- 标签顺序严格！ -->
+	<!-- 引入外部properties文件
+		resource:类路径
+		rul:磁盘路径
+	 -->
+	<properties resource="config/db.properties"></properties>
+	
+	<settings>
+		<!-- 开启驼峰命名法 -->
+		<setting name="mapUnderscoreToCamelCasEenables" value="true"/>
+	</settings>
+	
+	<!-- 起别名(别名不区分大小写)
+		package 批量别名：cn.wlx959.pojo.User->user or @Alias('xxx') -> xxx
+	 -->
+	<!-- <typeAliases>
+		<package name="cn.wlx959.pojo"/>
+	</typeAliases> -->
+	<!-- 数据库-java类型映射 -->
+	<!-- <typeHandlers>
+		<package name=""/>
+	</typeHandlers> -->
+	
+	<!-- <objectFactory type="">
+		<property name="" value=""/>
+	</objectFactory> -->
+	
+	<!-- <plugins>
+		<plugin interceptor=""></plugin>
+	</plugins> -->
+	
+	<environments default="dataSource">
+		<environment id="dataSource">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+			<property name="driver" value="${jdbc.driver}"/>
+			<property name="url" value="${jdbc.url}"/>
+			<property name="username" value="${jdbc.username}"/>
+			<property name="password" value="${jdbc.password}"/>
+			<property name="maxTotal" value="${jdbc.maxTotal}"/>
+			<property name="maxWaitMillis" value="${jdbc.maxWaitMillis}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 多数据库支持 -->
+	<!-- <databaseIdProvider type="">
+		<property name="" value=""/>
+	</databaseIdProvider> -->
+	
+	<mappers>
+		<!-- class:引用相应的接口，xml必须与接口同路径同名；或是以注解方式定义于接口中 -->
+		<!-- <mapper class="cn.wlx959.xxx.xxxMapper"/> -->
+		<!-- <mapper resource="cn/wlx959/xxx/xxxMapper.xml"/> -->
+		<package name="cn.wlx959.dao"/>
+	</mappers>
+</configuration>
